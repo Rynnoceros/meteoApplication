@@ -1,0 +1,10 @@
+<form>
+  <md-form-field>
+      <input mdInput placeholder="City name or ID" aria-label="City" [mdAutocomplete]="auto" [formControl]="cityCtrl" style="width:300px">
+  </md-form-field>
+  <md-autocomplete #auto="mdAutocomplete">
+      <md-option *ngFor="let city of filteredCities | async" [value]="city.name" (click)="onclick(city)" style="vertical-align: middle">
+         <img [src]="flagUrl+city.country.toLowerCase()+'.svg'" style="width:24px"/>{{ ' ' + city.name }}
+      </md-option>
+  </md-autocomplete>
+</form>

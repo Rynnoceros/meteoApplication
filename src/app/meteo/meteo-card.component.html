@@ -1,0 +1,38 @@
+<md-card *ngIf="meteo" class="card">
+    <md-card-content>
+      <h3>Aujourd'hui</h3>
+      <md-grid-list cols="2" rowHeight="25px">
+        <md-grid-tile>
+            Temps:{{ meteo?.weather[0]?.main }}
+        </md-grid-tile>
+        <md-grid-tile rowspan="2">
+            <img src="http://download.spinetix.com/content/widgets/icons/weather/{{meteo?.weather[0].icon}}.png" style="width:24px"/>
+        </md-grid-tile>
+        <md-grid-tile>
+            {{meteo?.main?.temp | celsius}} °C
+        </md-grid-tile>
+      </md-grid-list>
+    </md-card-content>
+</md-card>
+
+<md-card *ngIf="forecast" class="card">
+    <md-card-content>
+      <h3>{{forecast?.dt_txt?.substring(0,13)}}H</h3>
+      <md-grid-list cols="2" rowHeight="25px">
+        <md-grid-tile>
+          Temps:{{ forecast?.weather[0]?.main }}
+        </md-grid-tile>
+        <md-grid-tile rowspan="3">
+            <img src="http://download.spinetix.com/content/widgets/icons/weather/{{forecast?.weather[0].icon}}.png" style="width:64px"/>
+          </md-grid-tile>
+        <md-grid-tile>
+          Min:{{ forecast?.main?.temp_min | celsius }} °C
+        </md-grid-tile>
+        <md-grid-tile>
+          Max:{{ forecast?.main?.temp_max | celsius }} °C
+        </md-grid-tile>
+      </md-grid-list>
+    </md-card-content>
+</md-card>
+
+

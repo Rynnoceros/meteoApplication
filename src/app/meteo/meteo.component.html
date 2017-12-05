@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Application météo</title>
+</head>
+<body>
+    <h1>Application Météo</h1>
+    <app-search (cityChange)="refreshMeteoDatas($event)"></app-search>
+    <h2>{{meteoJour?.name}}</h2>
+    <agm-map [latitude]="meteoJour?.coord.lat" [longitude]="meteoJour?.coord.lon -1.2" [mapDraggable]="false" [scrollwheel]="false" [zoomControl]="false">
+        <agm-marker [latitude]="meteoJour?.coord.lat" [longitude]="meteoJour?.coord.lon"></agm-marker>
+    </agm-map>   
+    <md-tab-group>
+        <md-tab label="Météo du jour">
+            <app-meteo-card [meteo]="meteoJour"></app-meteo-card>
+        </md-tab>
+        <md-tab label="Prévisions à 5j">   
+            <md-grid-list cols="5" rowHeight="170px">
+                <md-grid-tile *ngFor="let forecast of meteo5Jours?.list">
+                    <app-meteo-card [forecast]="forecast"></app-meteo-card>
+                </md-grid-tile>
+            </md-grid-list>
+        </md-tab>
+        <md-tab label="Graphique">
+            <app-chart [forecast]="meteo5Jours"></app-chart>
+        </md-tab>
+    </md-tab-group>
+    <div class="dessus">
+        <h2 class="titleWeather">Temps:{{meteoJour?.weather[0]?.main}}</h2>
+        <h5 class="subTitleWeather">{{meteoJour?.weather[0]?.description}}</h5>
+
+        <img src="http://download.spinetix.com/content/widgets/icons/weather/{{meteoJour?.weather[0].icon}}.png" style="width:150px"/>
+    </div>
+</body>
+</html>

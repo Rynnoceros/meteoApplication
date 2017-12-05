@@ -1,0 +1,19 @@
+agm-map {
+    height: 300px;
+}
+
+.dessus {
+    top:168px;
+    left:15px;
+    width:500px;
+    height: 300px;
+    position:absolute;
+    text-align: center;
+    background-image: linear-gradient(to right, white 60%,transparent);
+}
+.subTitleWeather{
+    color : #2c3e50;
+}
+.titleWeather{
+    color : #34495e;
+}
